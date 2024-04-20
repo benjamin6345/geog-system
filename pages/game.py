@@ -380,7 +380,7 @@ def generate_player_info(player_idx):
 
 bottom_right_style = """
     position: fixed;
-    bottom: 0;
+    top: 0;
     right: 0;
     padding: 10px;
     color:green;
