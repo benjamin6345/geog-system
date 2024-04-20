@@ -380,12 +380,13 @@ def generate_player_info(player_idx):
 
 bottom_right_style = """
     position: fixed;
-    top: 0;
+    top: 50%;
     right: 0;
+    transform: translateY(50%);
     padding: 10px;
-    color:green;
-    font-size:20px;
-    bold:true;
+    color: green;
+    font-size: 20px;
+    font-weight: bold;
 """
 
 def buy_insurance():
