@@ -202,12 +202,8 @@ class resource:
             st.button(f'Get {self.label}', on_click=self.add_player_resource)
         else:
             st.button(f'Get {self.label}*1', on_click=self.add_player_resource)
-    
-    def destroy_building(self):
-        if st.session_state.collecting_plants_dict[player_idx][self.label] > 0: #if have
-            st.session_state.collecting_plants_dict[player_idx][self.label] -= 1
             
-        
+
     def display_generate_resource(self):
         st.write(f'Generates: {self.label}*{self.amount}')
     
@@ -474,9 +470,7 @@ def next_player():
             st.session_state.player_resource_dict[player_idx][resource] += amount * constant2
             
     st.session_state.first_round = True
-    
-print(st.session_state.resource_to_cost_mapping)   
- 
+
 def calculate_and_adjust_value_by_inflation_rate():
     try:
         cash = 0
@@ -541,6 +535,27 @@ if st.session_state.player_resource_dict[player_idx]['money'] == 0 and st.sessio
 if st.session_state.player_resource_dict[player_idx]['money'] > 0:
     st.session_state.broke_counter[player_idx] = 0
     
+    
+def sell_all():
+    cur_player_resource = st.session_state.player_resource_dict[player_idx]
+    
+    for res, amount in cur_player_resource.items():
+        if res == 'money':continue
+        cur_player_resource[res] = 0      
+        cur_player_resource['money'] += st.session_state.resource_to_cost_mapping[res] * amount
+        
+    st.session_state.player_resource_dict[player_idx] = cur_player_resource
+        
+
+def destroy_building(target_player_idx, target_plant):
+    if target_plant in st.session_state.collecting_plants_dict[target_player_idx] and st.session_state.collecting_plants_dict[target_player_idx][target_plant] > 0: #if have
+        st.session_state.collecting_plants_dict[target_player_idx][target_plant] -= 1
+        st.session_state.total_buildings_count -= 1
+        st.session_state.players_buildings_count[target_player_idx] -= 1
+        
+        
+    
+            
 with col1:
     wood_res1 = resource('wood', 1, 0, True)
     
@@ -758,5 +773,22 @@ with col5:
         constant = st.session_state.broke_counter[player_number] == 3 or st.session_state.player_dead_list[player_number]
         st.session_state.player_dead_list[player_number] = st.checkbox(f"{st.session_state.player_name_list[player_number]} Game Over", constant)
 
+    st.button('Sell all', on_click=sell_all)
+    
+    destroy_target_player_idx = st.selectbox(
+    "Target player",
+    ('1', '2', '3', '4'),
+    )
+
+    destroy_target_plant = st.selectbox(
+        "Target plant",
+        ('wood', 'iron ore', 'gold', 'crude oil', 'fish', 'crop', 'meat', 'stone', 'coal', 'animal'),
+
+    )
+
+    destroy_target_player_idx = int(destroy_target_player_idx)
+    st.button('Destroy target player plant', on_click=destroy_building, args=(destroy_target_player_idx, destroy_target_plant))
+    
 if st.session_state.first_round:
     st.session_state.first_round = False
+    
