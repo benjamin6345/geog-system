@@ -7,8 +7,8 @@ if "visibility" not in st.session_state:
 if 'player_name_list' not in st.session_state:
     st.session_state.player_name_list = [None, "", "", "", ""]
     
-st.title('Input Your Nicknames!')
-st.subheader('Warning: No Duplicated Names are Allowed')
+st.title('輸入你的名稱和角色！')
+st.subheader('警告：不能有重複名稱')
 
 if 'char_idx_tuple' not in st.session_state:
     st.session_state.char_idx_tuple = (0, 0, 0, 0)
@@ -18,7 +18,7 @@ if 'char_idx_tuple' not in st.session_state:
 
 
 player1_name = st.text_input(
-        "Player 1 Name:👇",
+        "玩家一名稱:👇",
         value=st.session_state.player_name_list[1],
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
@@ -26,7 +26,7 @@ player1_name = st.text_input(
     )
 
 option1 = st.selectbox(
-        "Player 1 Character",
+        "玩家一角色",
         ('爱迪生', '特斯拉', '慈禧', '尼古拉斯二世', '袁隆平', '成吉思汗', '秦始皇', '明治天皇', '罗斯福', '刘秀', '奥本海默', '腓特烈二世'),
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
@@ -34,7 +34,7 @@ option1 = st.selectbox(
 
 
 player2_name = st.text_input(
-        "Player 2 Name: 👇",
+        "玩家二名稱: 👇",
         value=st.session_state.player_name_list[2],
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
@@ -42,7 +42,7 @@ player2_name = st.text_input(
     )
 
 option2 = st.selectbox(
-        "Player 2 Character",
+        "玩家二角色",
         ('爱迪生', '特斯拉', '慈禧', '尼古拉斯二世', '袁隆平', '成吉思汗', '秦始皇', '明治天皇', '罗斯福', '刘秀', '奥本海默', '腓特烈二世'),
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
@@ -50,7 +50,7 @@ option2 = st.selectbox(
 
 
 player3_name = st.text_input(
-        "Player 3 Name: 👇",
+        "玩家三名字: 👇",
         value=st.session_state.player_name_list[3],
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
@@ -58,7 +58,7 @@ player3_name = st.text_input(
     )
 
 option3 = st.selectbox(
-        "Player 3 Character",
+        "玩家三角色",
         ('爱迪生', '特斯拉', '慈禧', '尼古拉斯二世', '袁隆平', '成吉思汗', '秦始皇', '明治天皇', '罗斯福', '刘秀', '奥本海默', '腓特烈二世'),
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
@@ -66,7 +66,7 @@ option3 = st.selectbox(
 
 
 player4_name = st.text_input(
-    "Player 4 Name: 👇",
+    "玩家四名稱: 👇",
     value=st.session_state.player_name_list[4],
     label_visibility=st.session_state.visibility,
     disabled=st.session_state.disabled,
@@ -74,7 +74,7 @@ player4_name = st.text_input(
 )
 
 option4 = st.selectbox(
-        "Player 4 Character",
+        "玩家四角色",
         ('爱迪生', '特斯拉', '慈禧', '尼古拉斯二世', '袁隆平', '成吉思汗', '秦始皇', '明治天皇', '罗斯福', '刘秀', '奥本海默', '腓特烈二世'),
         label_visibility=st.session_state.visibility,
         disabled=st.session_state.disabled,
